@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+	<changeSet id="1" author="abhay">
+		<!-- _______________________ TENANTS _______________________ -->
+		<createTable tableName="tenants">
+			<column name="id" type="bigint" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="tenant_email" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="tenant_firstName" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="tenant_middleName" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="tenant_lastName" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="tenant_phone" type="varchar(255)">
+			</column>
+			<column name="tenant_landmark" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="tenant_city" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="tenant_bankAcNo" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="tenant_bankName" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="tenant_bankBranch" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="tenant_ifscCode" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="tenant_pan" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="tenant_status" type="varchar(255)">
+			<constraints nullable="false" />
+			</column>
+			<column name="tenant_parent" type="varchar(255)">
+			</column>
+			<column name="tenant_joining_date" type="varchar(255)">
+			<constraints nullable="false" />
+			</column>
+			<column name="tenant_total_amount" type="bigint">
+			<constraints nullable="false" />
+			</column>
+			<column name="tenant_paid_amount" type="bigint">
+			<constraints nullable="false" />
+			</column>
+			<column name="tenant_pswd" type="varchar(255)">
+			</column>
+			<column name="tenant_stage" type="bigint">
+			</column>
+			<column name="tenant_requied_id" type="bigint">
+			</column>
+			<column name="tenant_sponsor" type="bigint">
+			</column>
+		</createTable>
+
+		
+		<!-- _______________________ LABJUMPUSERS _______________________ -->
+		<!-- ~~~~~~~~~~~~ -->
+		<createTable tableName="loginusers">
+			<column name="id" type="bigint" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="user_loginID" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="user_pwd" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="user_role" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="email" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="tenant_id" type="bigint">
+				<constraints nullable="false" />
+			</column>
+			<column name="status" type="varchar(255)">
+			<constraints nullable="false" />
+			</column>
+		</createTable>
+		<addForeignKeyConstraint baseColumnNames="tenant_id"
+			baseTableName="loginusers" constraintName="fk_loginusers_tenant_id"
+			onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="id"
+			referencedTableName="tenants" />
+		
+	</changeSet>
+	
+</databaseChangeLog>
